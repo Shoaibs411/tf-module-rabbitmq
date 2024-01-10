@@ -1,4 +1,4 @@
-resource "aws_security_group" "allows_rabbitmq" {
+resource "aws_security_group" "rabbitmq" {
   name        = "roboshop-${var.ENV}-rabbitmq-sg"
   description = "Allows Only RabbitMQ Traffic"
   vpc_id      = data.terraform_remote_state.vpc.outputs.VPC_ID

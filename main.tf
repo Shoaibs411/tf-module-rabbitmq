@@ -1,9 +1,9 @@
 # creates ec2 instance
-resource "aws_instance" "allows_rabbitmq" {
+resource "aws_instance" "rabbitmq" {
   ami                    = data.aws_ami.ami.id                                # argument
   subnet_id              = data.terraform_remote_state.vpc.outputs.PRIVATE_SUBNET_IDS[0] 
   instance_type          = var.RABBITMQ_INSTANCE_TYPE
-  vpc_security_group_ids = [aws_security_group.allows_rabbitmq.id]
+  vpc_security_group_ids = [aws_security_group.rabbitmq.id]
 
     tags = {
              Name        = "roboshop-${var.ENV}-rabbitmq"
@@ -18,7 +18,7 @@ resource "null_resource" "app_install" {
       type     = "ssh"
       user     = "centos"
       password = "DevOps321"
-      host     = aws_instance.allows_rabbitmq.private_ip             # aws_instance.sample.private_ip : Use this only if your provisioner is outside the resource.
+      host     = aws_instance.rabbitmq.private_ip             # aws_instance.sample.private_ip : Use this only if your provisioner is outside the resource.
     }
 
     inline = [
