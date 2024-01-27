@@ -10,8 +10,8 @@ data "terraform_remote_state" "vpc" {
 
 data "aws_ami" "ami" {
   most_recent      = true
-  name_regex       = "DevOps-LabImage-CentOS7"
-  owners           = ["355449129696"]
+  name_regex       = "centos7-with-ansible"
+  owners           = ["355449129696"]              
 }
 
 # Extracting the information of the secret
